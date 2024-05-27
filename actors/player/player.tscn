@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cva1u0rtei2cf"]
+[gd_scene load_steps=28 format=3 uid="uid://cva1u0rtei2cf"]
 
 [ext_resource type="Script" path="res://actors/player/player.gd" id="1_2uo8i"]
 [ext_resource type="Texture2D" uid="uid://c7427qd811w2b" path="res://graphics/player/Idle.png" id="2_ibo8x"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://components/state_machine/states/jump/jump.gd" id="7_ro6dm"]
 [ext_resource type="Script" path="res://components/state_machine/state/state.gd" id="8_jfsar"]
 [ext_resource type="Texture2D" uid="uid://cip3cccqahk6j" path="res://graphics/player/Attack1.png" id="8_ql44q"]
+[ext_resource type="Script" path="res://components/state_machine/states/take_damage/take_damage.gd" id="9_yse2l"]
 [ext_resource type="PackedScene" uid="uid://bjnl0sxm3tc3q" path="res://components/hitbox/hitbox_component.tscn" id="10_7mxnx"]
 [ext_resource type="Texture2D" uid="uid://c1pvtssg2mjes" path="res://graphics/player/Jump.png" id="10_8med7"]
 [ext_resource type="Texture2D" uid="uid://haigasfnbeoq" path="res://graphics/player/Take Hit.png" id="11_j1wwp"]
@@ -320,7 +321,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_i3rca"]
 resource_name = "player_take_hit"
-length = 0.4
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -364,7 +365,7 @@ tracks/3/path = NodePath("Sprite2D:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
@@ -377,7 +378,7 @@ _data = {
 "player_idle": SubResource("Animation_rsgh8"),
 "player_jump": SubResource("Animation_nblms"),
 "player_run": SubResource("Animation_fs4ll"),
-"player_take_hit": SubResource("Animation_i3rca")
+"player_take_damage": SubResource("Animation_i3rca")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_um2li"]
@@ -418,6 +419,9 @@ script = ExtResource("7_ro6dm")
 
 [node name="State" type="Node" parent="StateMachine"]
 script = ExtResource("8_jfsar")
+
+[node name="TakeDamage" type="Node" parent="StateMachine"]
+script = ExtResource("9_yse2l")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

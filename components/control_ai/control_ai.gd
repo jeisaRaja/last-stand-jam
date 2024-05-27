@@ -39,6 +39,3 @@ func enemy_input():
 			else:
 				actor.attack_input = true
 
-func _on_hitbox_component_body_entered(body):
-	print("send damage to body")
-

@@ -33,4 +33,5 @@ func actor_movement():
 		actor.velocity.x = 0
 
 func _on_health_damage_signal():
-	print("taking damage")
+	print("damage")
+	change_state.emit(self,  "TakeDamage")

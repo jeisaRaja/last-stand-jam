@@ -35,4 +35,3 @@ func update_health():
 
 func _on_hurt_box_component_area_entered(area):
 	take_damage(area.owner.DAMAGE)
-	print(current_health)

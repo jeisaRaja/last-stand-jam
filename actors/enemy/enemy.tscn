@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c1e081jsnv0js"]
+[gd_scene load_steps=31 format=3 uid="uid://c1e081jsnv0js"]
 
 [ext_resource type="Script" path="res://actors/enemy/enemy.gd" id="1_m5ck5"]
 [ext_resource type="Texture2D" uid="uid://cyo21wi80ignc" path="res://graphics/enemy/Idle.png" id="1_slray"]
@@ -13,9 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://cawd43ks2aj6n" path="res://graphics/enemy/Attack1.png" id="8_00jjo"]
 [ext_resource type="Script" path="res://components/state_machine/state/state.gd" id="8_4lo2i"]
 [ext_resource type="Texture2D" uid="uid://bla1hxpg27udp" path="res://graphics/enemy/Death.png" id="9_jpjkh"]
+[ext_resource type="Script" path="res://components/state_machine/states/take_damage/take_damage.gd" id="9_witd6"]
 [ext_resource type="PackedScene" uid="uid://f7eapagl4avm" path="res://components/control_ai/control_ai.tscn" id="11_5d4og"]
 [ext_resource type="PackedScene" uid="uid://bjnl0sxm3tc3q" path="res://components/hitbox/hitbox_component.tscn" id="11_m663x"]
 [ext_resource type="Script" path="res://components/health/health_component.gd" id="13_damnr"]
+[ext_resource type="Texture2D" uid="uid://butb8pd5vc2p6" path="res://graphics/enemy/Take hit.png" id="13_v7yoa"]
 [ext_resource type="PackedScene" uid="uid://b8borpnglen2f" path="res://components/hurtbox/hurt_box_component.tscn" id="14_pw64c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_at1sl"]
@@ -437,13 +439,78 @@ tracks/5/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_6csfq"]
+resource_name = "enemy_take_damage"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("13_v7yoa")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HurtBoxComponent/HurtboxCollision:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2p333"]
 _data = {
 "RESET": SubResource("Animation_u3r7i"),
 "enemy_attack": SubResource("Animation_2v5vq"),
 "enemy_death": SubResource("Animation_ivvp5"),
 "enemy_idle": SubResource("Animation_6vnge"),
-"enemy_run": SubResource("Animation_skcs2")
+"enemy_run": SubResource("Animation_skcs2"),
+"enemy_take_damage": SubResource("Animation_6csfq")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2d586"]
@@ -487,6 +554,9 @@ script = ExtResource("6_ohogx")
 
 [node name="State" type="Node" parent="StateMachine"]
 script = ExtResource("8_4lo2i")
+
+[node name="TakeDamage" type="Node" parent="StateMachine"]
+script = ExtResource("9_witd6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

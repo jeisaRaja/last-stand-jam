@@ -16,14 +16,15 @@ func _physics_process(delta):
 	if current_state: current_state.physics_update(delta)
 	
 func on_child_transition(state: State, new_state_name: String):
-	if state != current_state:
-		return 
+	#if state != current_state:
+		#return 
 	if current_state:
 		current_state.exit()
 	var new_state = states.get(new_state_name.to_lower())
 	new_state.enter()
 	current_state = new_state
-	#current_state_name = newStateName
+	if new_state_name == "TakeDamage":
+		print(current_state)
 
 func initiate_states_machine():
 	for child in get_children():
@@ -34,5 +35,3 @@ func initiate_states_machine():
 		initial_state.enter()
 		current_state = initial_state
 
-#func get_current_state_name():
-	#return current_state_name

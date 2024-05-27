@@ -3,7 +3,7 @@ class_name TakeDamage
 
 
 func enter():
-	anim.play(actor.name.to_lower() + "_take_damage")
+	anim.play("take_damage")
 	actor.velocity = Vector2.ZERO
 
 func physics_update(delta):

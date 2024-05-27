@@ -2,7 +2,7 @@ extends State
 class_name Jump
 
 func enter():
-	anim.play(actor.name.to_lower() + "_jump")
+	anim.play("jump")
 	actor.velocity.y = actor.JUMP_VELOCITY
 
 func physics_update(delta):

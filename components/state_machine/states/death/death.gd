@@ -2,7 +2,7 @@ extends State
 class_name Death
 
 func enter():
-	anim.play(actor.name.to_lower() + "_death")
+	anim.play("death")
 	actor.velocity = Vector2.ZERO
 	actor.set_collision_mask_value(2, false)
 	print(actor.get_collision_mask_value(2))

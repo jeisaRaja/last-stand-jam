@@ -8,10 +8,10 @@ func enter():
 	if combo_timer.is_stopped():
 		combo_count = 0
 	if combo_count == 0:
-		anim.play(actor.name.to_lower() + "_attack")
+		anim.play("attack")
 		combo_count += 1
 	else:
-		anim.play(actor.name.to_lower() + "_attack_2")
+		anim.play("attack_2")
 		combo_count = 0
 	actor.velocity = Vector2.ZERO
 

@@ -2,7 +2,7 @@ extends State
 class_name Run
 
 func enter():
-	anim.play(actor.name.to_lower() + "_run")
+	anim.play("run")
 
 func physics_update(delta):
 	actor.gravity.apply_gravity(delta)

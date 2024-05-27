@@ -2,7 +2,8 @@ extends State
 class_name Idle
 
 func enter():
-	anim.play(actor.name.to_lower() + "_idle")
+	actor.get_groups()
+	anim.play("idle")
 	actor.velocity = Vector2.ZERO ## Reset velocity
 
 func physics_update(delta):

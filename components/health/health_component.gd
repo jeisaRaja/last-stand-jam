@@ -19,6 +19,7 @@ func _process(_delta):
 		is_alive = false
 	
 func take_damage(damage: int) -> void:
+	print(damage)
 	damage -= armor
 	if damage > 0:
 		current_health -= damage
@@ -37,4 +38,4 @@ func update_health():
 	label.text = str(current_health)
 
 func _on_hurt_box_component_area_entered(area):
-	take_damage(area.owner.DAMAGE)
+	take_damage(area.owner.current_attack["damage"])

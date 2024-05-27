@@ -1,7 +1,7 @@
 extends Node
 
 @export var actor: Actor
-@export var attack_range: int 
+@export var base_attack_range: int 
 
 var player: Actor = null
 var chase_player: bool = false
@@ -12,15 +12,15 @@ func _physics_process(delta):
 func _on_detection_area_body_entered(body):
 	if body.name.to_lower() == "player":
 		player = body
-		if is_player_alive():
+		if is_player_alive() and not chase_player:
+			get_tree().call_group("enemy", "alert", player)
 			chase_player = true
-			actor.SPEED += 150
 
 func _on_detection_area_body_exited(body):
-	chase_player = false
-	player = null
+	#chase_player = false
+	#player = null
 	actor.attack_input = false
-	actor.SPEED = actor.BASE_SPEED
+	#actor.SPEED = actor.BASE_SPEED
 	
 func enemy_input():
 	actor.movement_input = Vector2.ZERO
@@ -30,7 +30,7 @@ func enemy_input():
 			chase_player = false
 			actor.attack_input = false
 			actor.SPEED = actor.BASE_SPEED
-		elif distance_to_player > attack_range:
+		elif distance_to_player > randomize_attack_range():
 			actor.attack_input = false
 			if player.position.x > actor.position.x:
 				actor.movement_input.x = 1
@@ -50,3 +50,11 @@ func enemy_input():
 
 func is_player_alive():
 	return player.health_component.current_health > 0
+
+func _on_enemy_alert_enemy(player_obj):
+	player = player_obj
+	chase_player = true
+	actor.SPEED += 150
+
+func randomize_attack_range():
+	return base_attack_range + randi_range(-20,11)

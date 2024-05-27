@@ -3,6 +3,13 @@ class_name Player
 
 @onready var health_component = $Health
 
+func _ready():
+	super._ready()
+	attack_pattern = [
+		{"name": "attack", "probability": 1, "cooldown": 0, "damage": 10},
+		{"name": "attack_2", "probability": 1, "cooldown": 0, "damage": 15},
+	]
+
 func _physics_process(delta):
 	player_input()
 	move_and_slide()

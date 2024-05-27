@@ -29,6 +29,10 @@ var jump_count: int = 0
 var max_jump_count: int = 2
 var facing_dir: int = 1
 
+var current_attack = null
+
+var attack_pattern = []
+
 func _ready():
 	for state in state_machine.get_children():
 		if state is State:

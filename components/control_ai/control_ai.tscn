@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://f7eapagl4avm"]
+
+[ext_resource type="Script" path="res://components/control_ai/control_ai.gd" id="1_5xluj"]
+
+[node name="MovementAI" type="Node"]
+script = ExtResource("1_5xluj")

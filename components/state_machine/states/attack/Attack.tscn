@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://5rknng2p00c2"]
+
+[ext_resource type="Script" path="res://components/state_machine/states/attack/attack.gd" id="1_1lrj3"]
+
+[node name="Attack" type="Node"]
+script = ExtResource("1_1lrj3")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c1e081jsnv0js"]
+[gd_scene load_steps=34 format=3 uid="uid://c1e081jsnv0js"]
 
 [ext_resource type="Script" path="res://actors/enemy/enemy.gd" id="1_m5ck5"]
 [ext_resource type="Texture2D" uid="uid://cyo21wi80ignc" path="res://graphics/enemy/Idle.png" id="1_slray"]
@@ -18,11 +18,13 @@
 [ext_resource type="PackedScene" uid="uid://bjnl0sxm3tc3q" path="res://components/hitbox/hitbox_component.tscn" id="11_m663x"]
 [ext_resource type="Script" path="res://components/health/health_component.gd" id="13_damnr"]
 [ext_resource type="Texture2D" uid="uid://butb8pd5vc2p6" path="res://graphics/enemy/Take hit.png" id="13_v7yoa"]
+[ext_resource type="Texture2D" uid="uid://dlgybuf2q54d4" path="res://graphics/enemy/Attack2.png" id="14_0h3cj"]
 [ext_resource type="PackedScene" uid="uid://b8borpnglen2f" path="res://components/hurtbox/hurt_box_component.tscn" id="14_pw64c"]
 [ext_resource type="PackedScene" uid="uid://b3ofctom1qyfi" path="res://components/detect_ground/detect_ground_component.tscn" id="20_s7sk5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_at1sl"]
-size = Vector2(14, 44)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kw2st"]
+radius = 6.0
+height = 42.0
 
 [sub_resource type="Animation" id="Animation_6vnge"]
 resource_name = "enemy_idle"
@@ -198,6 +200,18 @@ tracks/6/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("HitboxComponent/HitboxCollision:shape:size")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(62, 51)]
+}
 
 [sub_resource type="Animation" id="Animation_skcs2"]
 resource_name = "enemy_run"
@@ -363,6 +377,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HitboxComponent/HitboxCollision:shape:size")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(62, 51)]
+}
 
 [sub_resource type="Animation" id="Animation_ivvp5"]
 resource_name = "enemy_death"
@@ -425,7 +451,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -504,10 +530,87 @@ tracks/4/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_ksjyf"]
+resource_name = "enemy_attack_2"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("14_0h3cj")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HitboxComponent/HitboxCollision:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HitboxComponent/HitboxCollision:shape:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(107, 51)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2p333"]
 _data = {
 "RESET": SubResource("Animation_u3r7i"),
 "enemy_attack": SubResource("Animation_2v5vq"),
+"enemy_attack_2": SubResource("Animation_ksjyf"),
 "enemy_death": SubResource("Animation_ivvp5"),
 "enemy_idle": SubResource("Animation_6vnge"),
 "enemy_run": SubResource("Animation_skcs2"),
@@ -515,10 +618,10 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2d586"]
-size = Vector2(293, 65)
+size = Vector2(293, 47)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qejcb"]
-size = Vector2(38, 48)
+size = Vector2(62, 51)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ft7pp"]
 size = Vector2(19, 35)
@@ -528,11 +631,12 @@ collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_m5ck5")
 BASE_SPEED = 100
-DAMAGE = 30
+DAMAGE = 10
 
 [node name="EnemyCollision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -22)
-shape = SubResource("RectangleShape2D_at1sl")
+shape = SubResource("CapsuleShape2D_kw2st")
 disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -568,10 +672,11 @@ libraries = {
 actor = NodePath("..")
 
 [node name="DetectionArea" parent="." instance=ExtResource("7_1tut5")]
+visible = false
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(34.5, -32.5)
+position = Vector2(34.5, -29.5)
 shape = SubResource("RectangleShape2D_2d586")
 
 [node name="ControlAI" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("11_5d4og")]
@@ -579,13 +684,12 @@ actor = NodePath("..")
 attack_range = 50
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("11_m663x")]
-visible = false
 collision_layer = 16
 collision_mask = 32
 actor = NodePath("..")
 
 [node name="HitboxCollision" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(32, -25)
+position = Vector2(-0.5, -27.5)
 shape = SubResource("RectangleShape2D_qejcb")
 disabled = true
 
@@ -600,6 +704,7 @@ offset_bottom = -56.0
 text = "100"
 
 [node name="HurtBoxComponent" parent="." instance=ExtResource("14_pw64c")]
+visible = false
 collision_layer = 64
 collision_mask = 8
 

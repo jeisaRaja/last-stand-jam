@@ -5,8 +5,8 @@
 [node name="Attack" type="Node"]
 script = ExtResource("1_1lrj3")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="ComboTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ComboTimer" to="." method="_on_timer_timeout"]

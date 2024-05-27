@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cva1u0rtei2cf"]
+[gd_scene load_steps=33 format=3 uid="uid://cva1u0rtei2cf"]
 
 [ext_resource type="Script" path="res://actors/player/player.gd" id="1_2uo8i"]
 [ext_resource type="Texture2D" uid="uid://c7427qd811w2b" path="res://graphics/player/Idle.png" id="2_ibo8x"]
@@ -6,12 +6,12 @@
 [ext_resource type="Script" path="res://components/state_machine/states/idle/idle.gd" id="4_ghcu4"]
 [ext_resource type="Script" path="res://components/state_machine/states/run/run.gd" id="5_3dguc"]
 [ext_resource type="Texture2D" uid="uid://c38ke5lngearc" path="res://graphics/player/Run.png" id="6_ikfdv"]
-[ext_resource type="Script" path="res://components/state_machine/states/attack/attack.gd" id="6_rb8bs"]
 [ext_resource type="PackedScene" uid="uid://c1b3l7qyt0e5s" path="res://components/gravity/gravity_component.tscn" id="7_kr4po"]
 [ext_resource type="Script" path="res://components/state_machine/states/jump/jump.gd" id="7_ro6dm"]
 [ext_resource type="Script" path="res://components/state_machine/state/state.gd" id="8_jfsar"]
 [ext_resource type="Texture2D" uid="uid://cip3cccqahk6j" path="res://graphics/player/Attack1.png" id="8_ql44q"]
 [ext_resource type="Script" path="res://components/state_machine/states/take_damage/take_damage.gd" id="9_yse2l"]
+[ext_resource type="PackedScene" uid="uid://5rknng2p00c2" path="res://components/state_machine/states/attack/Attack.tscn" id="10_1e5bl"]
 [ext_resource type="PackedScene" uid="uid://bjnl0sxm3tc3q" path="res://components/hitbox/hitbox_component.tscn" id="10_7mxnx"]
 [ext_resource type="Texture2D" uid="uid://c1pvtssg2mjes" path="res://graphics/player/Jump.png" id="10_8med7"]
 [ext_resource type="Script" path="res://components/state_machine/states/death/death.gd" id="10_a5i3o"]
@@ -19,9 +19,11 @@
 [ext_resource type="Texture2D" uid="uid://s05hdus43x5o" path="res://graphics/player/Death.png" id="14_5soww"]
 [ext_resource type="PackedScene" uid="uid://b8borpnglen2f" path="res://components/hurtbox/hurt_box_component.tscn" id="14_46h4m"]
 [ext_resource type="Texture2D" uid="uid://ct4d1cu5yjcs3" path="res://graphics/player/Take Hit - white silhouette.png" id="14_w7gby"]
+[ext_resource type="Texture2D" uid="uid://d0nevpu58xp4v" path="res://graphics/player/Attack2.png" id="16_7sbd0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fytti"]
-size = Vector2(20, 42)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h30rk"]
+radius = 6.0
+height = 42.0
 
 [sub_resource type="Animation" id="Animation_01o2e"]
 length = 0.001
@@ -497,10 +499,63 @@ tracks/5/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_dpy0e"]
+resource_name = "player_attack_2"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("16_7sbd0")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t5i3o"]
 _data = {
 "RESET": SubResource("Animation_01o2e"),
 "player_attack": SubResource("Animation_lbae8"),
+"player_attack_2": SubResource("Animation_dpy0e"),
 "player_death": SubResource("Animation_ucmev"),
 "player_idle": SubResource("Animation_rsgh8"),
 "player_jump": SubResource("Animation_nblms"),
@@ -515,7 +570,7 @@ size = Vector2(64, 70)
 size = Vector2(31, 32)
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 6
+collision_mask = 4
 script = ExtResource("1_2uo8i")
 BASE_SPEED = 200
 JUMP_VELOCITY = -350.0
@@ -528,7 +583,7 @@ hframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -22)
-shape = SubResource("RectangleShape2D_fytti")
+shape = SubResource("CapsuleShape2D_h30rk")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("2_u01u3")]
 initial_state = NodePath("Idle")
@@ -538,9 +593,6 @@ script = ExtResource("4_ghcu4")
 
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource("5_3dguc")
-
-[node name="Attack" type="Node" parent="StateMachine"]
-script = ExtResource("6_rb8bs")
 
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("7_ro6dm")
@@ -553,6 +605,8 @@ script = ExtResource("8_jfsar")
 
 [node name="Death" type="Node" parent="StateMachine"]
 script = ExtResource("10_a5i3o")
+
+[node name="Attack" parent="StateMachine" instance=ExtResource("10_1e5bl")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

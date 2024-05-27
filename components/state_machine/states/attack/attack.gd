@@ -1,10 +1,22 @@
 extends State
 class_name Attack
 
+@onready var combo_timer = $ComboTimer
+var combo_count = 0
 
 func enter():
-	anim.play(actor.name.to_lower() + "_attack")
+	if combo_timer.is_stopped():
+		combo_count = 0
+	if combo_count == 0:
+		anim.play(actor.name.to_lower() + "_attack")
+		combo_count += 1
+	else:
+		anim.play(actor.name.to_lower() + "_attack_2")
+		combo_count = 0
 	actor.velocity = Vector2.ZERO
+
+func exit():
+	combo_timer.start()
 
 func physics_update(delta):
 	if not anim.is_playing():

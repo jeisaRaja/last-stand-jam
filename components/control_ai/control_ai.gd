@@ -39,4 +39,5 @@ func enemy_input():
 				actor.attack_input = false				
 			else:
 				actor.attack_input = true
-
+	else:
+		actor.movement_input.x = actor.facing_dir

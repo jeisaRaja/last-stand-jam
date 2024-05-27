@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c1e081jsnv0js"]
+[gd_scene load_steps=32 format=3 uid="uid://c1e081jsnv0js"]
 
 [ext_resource type="Script" path="res://actors/enemy/enemy.gd" id="1_m5ck5"]
 [ext_resource type="Texture2D" uid="uid://cyo21wi80ignc" path="res://graphics/enemy/Idle.png" id="1_slray"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://components/health/health_component.gd" id="13_damnr"]
 [ext_resource type="Texture2D" uid="uid://butb8pd5vc2p6" path="res://graphics/enemy/Take hit.png" id="13_v7yoa"]
 [ext_resource type="PackedScene" uid="uid://b8borpnglen2f" path="res://components/hurtbox/hurt_box_component.tscn" id="14_pw64c"]
+[ext_resource type="PackedScene" uid="uid://b3ofctom1qyfi" path="res://components/detect_ground/detect_ground_component.tscn" id="20_s7sk5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_at1sl"]
 size = Vector2(14, 44)
@@ -526,7 +527,7 @@ size = Vector2(19, 35)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_m5ck5")
-SPEED = 180.0
+SPEED = 100.0
 DAMAGE = 30
 
 [node name="EnemyCollision" type="CollisionShape2D" parent="."]
@@ -607,6 +608,13 @@ collision_mask = 8
 position = Vector2(-0.5, -23.5)
 shape = SubResource("RectangleShape2D_ft7pp")
 disabled = true
+
+[node name="Raycasts" type="Node2D" parent="."]
+
+[node name="DetectGroundComponent" parent="Raycasts" node_paths=PackedStringArray("actor") instance=ExtResource("20_s7sk5")]
+position = Vector2(13, -15)
+target_position = Vector2(0, 20)
+actor = NodePath("../..")
 
 [connection signal="body_entered" from="DetectionArea" to="ControlAI" method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="ControlAI" method="_on_detection_area_body_exited"]

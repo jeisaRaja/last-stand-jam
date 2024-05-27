@@ -15,10 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://bjnl0sxm3tc3q" path="res://components/hitbox/hitbox_component.tscn" id="10_7mxnx"]
 [ext_resource type="Texture2D" uid="uid://c1pvtssg2mjes" path="res://graphics/player/Jump.png" id="10_8med7"]
 [ext_resource type="Script" path="res://components/state_machine/states/death/death.gd" id="10_a5i3o"]
-[ext_resource type="Texture2D" uid="uid://haigasfnbeoq" path="res://graphics/player/Take Hit.png" id="11_j1wwp"]
 [ext_resource type="Script" path="res://components/health/health_component.gd" id="13_38ssc"]
 [ext_resource type="Texture2D" uid="uid://s05hdus43x5o" path="res://graphics/player/Death.png" id="14_5soww"]
 [ext_resource type="PackedScene" uid="uid://b8borpnglen2f" path="res://components/hurtbox/hurt_box_component.tscn" id="14_46h4m"]
+[ext_resource type="Texture2D" uid="uid://ct4d1cu5yjcs3" path="res://graphics/player/Take Hit - white silhouette.png" id="14_w7gby"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fytti"]
 size = Vector2(20, 42)
@@ -382,7 +382,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("11_j1wwp")]
+"values": [ExtResource("14_w7gby")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -482,7 +482,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -509,7 +509,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_um2li"]
-size = Vector2(46, 70)
+size = Vector2(64, 70)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jqyl5"]
 size = Vector2(31, 32)
@@ -517,6 +517,7 @@ size = Vector2(31, 32)
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 6
 script = ExtResource("1_2uo8i")
+BASE_SPEED = 200
 JUMP_VELOCITY = -350.0
 DAMAGE = 10
 
@@ -566,7 +567,7 @@ collision_layer = 8
 collision_mask = 64
 
 [node name="HitboxCollision" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(35, -36)
+position = Vector2(44, -36)
 shape = SubResource("RectangleShape2D_um2li")
 disabled = true
 

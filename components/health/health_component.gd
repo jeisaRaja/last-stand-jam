@@ -13,7 +13,7 @@ signal damage_signal
 
 var current_health: int = max_health
 
-func _process(delta):
+func _process(_delta):
 	if current_health <= 0 and is_alive:
 		dead_signal.emit()
 		is_alive = false
@@ -22,7 +22,10 @@ func take_damage(damage: int) -> void:
 	damage -= armor
 	if damage > 0:
 		current_health -= damage
+		if current_health < 0:
+			current_health = 0
 		update_health()
+
 	damage_signal.emit()
 
 func heal(amount: int) -> void:

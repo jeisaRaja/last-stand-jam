@@ -7,10 +7,11 @@ class_name Actor
 @onready var sprite = $Sprite2D
 @onready var hitbox = $HitboxComponent
 
-
-@export var SPEED = 200.0
+@export var BASE_SPEED: int
 @export var JUMP_VELOCITY = -300.0
 @export var DAMAGE: int
+
+@onready var SPEED = BASE_SPEED
 
 var movement_input = Vector2.ZERO
 var jump_input: bool = false

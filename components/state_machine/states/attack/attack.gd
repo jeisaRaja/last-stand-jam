@@ -10,4 +10,3 @@ func physics_update(delta):
 	if not anim.is_playing():
 		change_state.emit(self, "idle")
 
-

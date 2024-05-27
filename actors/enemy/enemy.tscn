@@ -525,9 +525,9 @@ size = Vector2(19, 35)
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 4
 script = ExtResource("1_m5ck5")
-SPEED = 100.0
+BASE_SPEED = 100
 DAMAGE = 30
 
 [node name="EnemyCollision" type="CollisionShape2D" parent="."]
@@ -576,7 +576,6 @@ shape = SubResource("RectangleShape2D_2d586")
 
 [node name="ControlAI" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("11_5d4og")]
 actor = NodePath("..")
-SPEED = 100
 attack_range = 50
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("11_m663x")]

@@ -1,11 +1,12 @@
 extends Actor
 class_name Player
 
+@onready var health_component = $Health
+
 func _physics_process(delta):
 	player_input()
 	move_and_slide()
-	
-	
+
 func player_input():
 	movement_input = Vector2.ZERO
 	if Input.is_action_pressed("MoveRight"):

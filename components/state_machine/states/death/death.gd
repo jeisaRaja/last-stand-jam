@@ -9,4 +9,3 @@ func enter():
 func physics_update(delta):
 	pass
 
-

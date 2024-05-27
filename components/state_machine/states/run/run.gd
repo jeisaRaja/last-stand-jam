@@ -16,3 +16,4 @@ func physics_update(delta):
 	## Player Jump
 	if actor.jump_input_actuation:
 		change_state.emit(self, "jump")
+

@@ -552,11 +552,11 @@ script = ExtResource("6_ohogx")
 
 [node name="Death" parent="StateMachine" instance=ExtResource("7_52xq1")]
 
-[node name="State" type="Node" parent="StateMachine"]
-script = ExtResource("8_4lo2i")
-
 [node name="TakeDamage" type="Node" parent="StateMachine"]
 script = ExtResource("9_witd6")
+
+[node name="State" type="Node" parent="StateMachine"]
+script = ExtResource("8_4lo2i")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -567,7 +567,6 @@ libraries = {
 actor = NodePath("..")
 
 [node name="DetectionArea" parent="." instance=ExtResource("7_1tut5")]
-visible = false
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
@@ -613,4 +612,5 @@ disabled = true
 [connection signal="body_exited" from="DetectionArea" to="ControlAI" method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="HitboxComponent" to="ControlAI" method="_on_hitbox_component_body_entered"]
 [connection signal="damage_signal" from="Health" to="StateMachine/State" method="_on_health_damage_signal"]
+[connection signal="dead_signal" from="Health" to="StateMachine/State" method="_on_health_dead_signal"]
 [connection signal="area_entered" from="HurtBoxComponent" to="Health" method="_on_hurt_box_component_area_entered"]

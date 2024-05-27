@@ -18,7 +18,8 @@ func _on_detection_area_body_entered(body):
 func _on_detection_area_body_exited(body):
 	chase_player = false
 	player = null
-
+	actor.attack_input = false
+	
 func enemy_input():
 	actor.movement_input = Vector2.ZERO
 	if chase_player:

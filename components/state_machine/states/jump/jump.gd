@@ -10,3 +10,5 @@ func physics_update(delta):
 	actor.gravity.apply_gravity(delta)
 	if actor.is_on_floor():
 		change_state.emit(self, "idle")
+
+

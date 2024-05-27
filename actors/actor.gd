@@ -39,7 +39,6 @@ func _physics_process(delta):
 	pass
 
 func flip():
-	print("flipping")
 	sprite.flip_h = not sprite.flip_h
 	hitbox.scale.x *= -1
 

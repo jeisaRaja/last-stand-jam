@@ -23,8 +23,7 @@ func on_child_transition(state: State, new_state_name: String):
 	var new_state = states.get(new_state_name.to_lower())
 	new_state.enter()
 	current_state = new_state
-	if new_state_name == "TakeDamage":
-		print(current_state)
+
 
 func initiate_states_machine():
 	for child in get_children():

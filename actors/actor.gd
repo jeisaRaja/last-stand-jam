@@ -20,6 +20,7 @@ var jump_input_actuation: bool = false
 var climb_input: bool = false
 var dash_input: bool = false
 var attack_input: bool = false
+var block_input: bool = false
 
 var can_dash: bool = true
 var can_coyote: bool = false

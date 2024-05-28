@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cva1u0rtei2cf"]
+[gd_scene load_steps=36 format=3 uid="uid://cva1u0rtei2cf"]
 
 [ext_resource type="Script" path="res://actors/player/player.gd" id="1_2uo8i"]
 [ext_resource type="Texture2D" uid="uid://c7427qd811w2b" path="res://graphics/player/Idle.png" id="2_ibo8x"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://c1pvtssg2mjes" path="res://graphics/player/Jump.png" id="10_8med7"]
 [ext_resource type="Script" path="res://components/state_machine/states/death/death.gd" id="10_a5i3o"]
 [ext_resource type="PackedScene" uid="uid://sd4wojg2fvxg" path="res://components/state_machine/states/dash/dash.tscn" id="11_kx3v3"]
+[ext_resource type="PackedScene" uid="uid://drjriluagvvx1" path="res://components/state_machine/states/block/block.tscn" id="12_s1ted"]
 [ext_resource type="Script" path="res://components/health/health_component.gd" id="13_38ssc"]
 [ext_resource type="Texture2D" uid="uid://s05hdus43x5o" path="res://graphics/player/Death.png" id="14_5soww"]
 [ext_resource type="PackedScene" uid="uid://b8borpnglen2f" path="res://components/hurtbox/hurt_box_component.tscn" id="14_46h4m"]
@@ -578,6 +579,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [0, 1, 2, 3]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HitboxComponent/HitboxCollision:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t5i3o"]
 _data = {
@@ -639,6 +652,8 @@ script = ExtResource("10_a5i3o")
 [node name="Attack" parent="StateMachine" instance=ExtResource("10_1e5bl")]
 
 [node name="Dash" parent="StateMachine" instance=ExtResource("11_kx3v3")]
+
+[node name="Block" parent="StateMachine" instance=ExtResource("12_s1ted")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

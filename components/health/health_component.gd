@@ -27,6 +27,7 @@ func _process(_delta):
 	
 func take_damage(damage: int) -> void:
 	if actor.immune:
+		print("attack blocked")
 		actor.immune = false
 		return
 	damage -= armor

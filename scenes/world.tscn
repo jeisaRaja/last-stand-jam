@@ -2038,16 +2038,6 @@ script = ExtResource("1_l7mob")
 position = Vector2(351, 641)
 MAX_HEALTH = 20
 
-[node name="Enemy2" parent="." instance=ExtResource("3_aqldy")]
-position = Vector2(351, 641)
-BASE_SPEED = 120
-MAX_HEALTH = 20
-
-[node name="Enemy3" parent="." instance=ExtResource("3_aqldy")]
-position = Vector2(351, 641)
-BASE_SPEED = 80
-MAX_HEALTH = 20
-
 [node name="player" parent="." instance=ExtResource("1_dbl33")]
 position = Vector2(91, 641)
 

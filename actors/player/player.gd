@@ -50,4 +50,7 @@ func player_input():
 	else:
 		attack_input = false
 
-
+	if Input.is_action_just_pressed("Block"):
+		block_input = true
+	else:
+		block_input = false

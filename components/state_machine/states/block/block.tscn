@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://drjriluagvvx1"]
+
+[ext_resource type="Script" path="res://components/state_machine/states/block/block.gd" id="1_kq8y2"]
+
+[node name="Block" type="Node"]
+script = ExtResource("1_kq8y2")
+
+[node name="BlockDuration" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="BlockDuration" to="." method="_on_block_duration_timeout"]

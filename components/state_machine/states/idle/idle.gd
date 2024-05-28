@@ -18,6 +18,8 @@ func physics_update(delta):
 		change_state.emit(self, "jump")
 	if actor.dash_input:
 		change_state.emit(self, "dash")
+	if actor.block_input:
+		change_state.emit(self, "block")
 
 func _on_health_dead_signal():
 	pass

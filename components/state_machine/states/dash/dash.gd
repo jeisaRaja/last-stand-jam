@@ -16,6 +16,8 @@ func enter():
 func physics_update(delta):
 	if dash_duration.is_stopped():
 		change_state.emit(self, "idle")
+	if actor.attack_input:
+		change_state.emit(self, "attack")
 
 func exit():
 	actor.velocity.x = 0

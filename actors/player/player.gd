@@ -30,6 +30,7 @@ func player_input():
 		movement_input.y = -1
 	if Input.is_action_pressed("MoveDown"):
 		movement_input.y = 1
+		
 	if Input.is_action_pressed("Jump"):
 		jump_input = true
 	else:

@@ -10,7 +10,8 @@ class_name Actor
 @export var BASE_SPEED: int
 @export var JUMP_VELOCITY = -300.0
 @export var DAMAGE: int
-
+@export var MAX_HEALTH: int
+@export var ARMOR: int
 @onready var SPEED = BASE_SPEED
 
 var movement_input = Vector2.ZERO
@@ -30,8 +31,8 @@ var max_jump_count: int = 2
 var facing_dir: int = 1
 
 var current_attack = null
-
 var attack_pattern = []
+var immune: bool = false
 
 func _ready():
 	for state in state_machine.get_children():

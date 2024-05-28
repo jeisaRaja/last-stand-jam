@@ -11,12 +11,12 @@ config_version=5
 [application]
 
 config/name="last-stand-jam"
-run/main_scene="res://scenes/world.tscn"
+run/main_scene="res://ui/main_menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 
 [display]
 
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 
 [input]
 

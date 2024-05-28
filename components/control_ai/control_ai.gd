@@ -80,3 +80,4 @@ func randomize_attack():
 
 func _on_wait_timeout():
 	actor.can_attack = true
+

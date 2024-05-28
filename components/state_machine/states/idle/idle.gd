@@ -16,6 +16,8 @@ func physics_update(delta):
 	## Player Jump
 	if actor.jump_input_actuation:
 		change_state.emit(self, "jump")
+	if actor.dash_input:
+		change_state.emit(self, "dash")
 
 func _on_health_dead_signal():
 	pass

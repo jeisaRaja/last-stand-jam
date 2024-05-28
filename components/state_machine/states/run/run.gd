@@ -12,9 +12,10 @@ func physics_update(delta):
 		change_state.emit(self, "idle")
 	## Player Attack
 	if actor.attack_input:
-		print("attack")
 		change_state.emit(self, "attack")
 	## Player Jump
 	if actor.jump_input_actuation:
 		change_state.emit(self, "jump")
+	if actor.dash_input:
+		change_state.emit(self, "dash")
 

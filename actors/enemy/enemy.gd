@@ -11,17 +11,16 @@ var can_attack: bool = true
 func _ready():
 	super._ready()
 	attack_pattern = [
-		{"name": "attack", "probability": 0.5, "cooldown": 0.1, "damage": 10},
-		{"name": "attack_2", "probability": 0.4, "cooldown": 0.2, "damage": 20},
-		{"name": "attack_3", "probability": 0.1, "cooldown": 0.4, "damage": 40}
+		{"name": "attack", "probability": 0.4, "cooldown": 0.2, "damage": 10},
+		{"name": "attack_2", "probability": 0.4, "cooldown": 0.3, "damage": 20},
+		{"name": "attack_3", "probability": 0.2, "cooldown": 0.4, "damage": 30}
 	]
 
 func _physics_process(_delta):
 	move_and_slide()
 	
 func flip():
-	sprite.flip_h = not sprite.flip_h
-	hitbox.scale.x *= -1
+	super.flip()
 	detection_area.scale.x *= -1
 	raycats.scale.x *= -1
 

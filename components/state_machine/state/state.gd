@@ -32,10 +32,8 @@ func actor_movement():
 	else:
 		actor.velocity.x = 0
 
-
 func _on_health_damage_signal():
 	change_state.emit(self,  "TakeDamage")
 
 func _on_health_dead_signal():
-	print("enemy death")
 	change_state.emit(self, "Death")

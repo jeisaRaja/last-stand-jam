@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://sd4wojg2fvxg"]
+
+[ext_resource type="Script" path="res://components/state_machine/states/dash/dash.gd" id="1_w12dw"]
+
+[node name="Dash" type="Node"]
+script = ExtResource("1_w12dw")
+
+[node name="dash_duration" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true

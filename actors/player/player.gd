@@ -3,6 +3,8 @@ class_name Player
 
 @onready var health_component = $Health
 
+signal dead_signal
+
 func _ready():
 	super._ready()
 	attack_pattern = [
@@ -10,7 +12,11 @@ func _ready():
 		{"name": "attack_2", "probability": 1, "cooldown": 0, "damage": 15},
 	]
 
-func _physics_process(delta):
+func _process(_delta):
+	if health_component.current_health <= 0:
+		dead_signal.emit()
+
+func _physics_process(_delta):
 	player_input()
 	move_and_slide()
 

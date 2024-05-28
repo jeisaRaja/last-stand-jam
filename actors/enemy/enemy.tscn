@@ -783,7 +783,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2d586"]
-size = Vector2(334, 47)
+size = Vector2(346, 47)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ft7pp"]
 size = Vector2(19, 35)
@@ -837,7 +837,7 @@ actor = NodePath("..")
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(136, -29.5)
+position = Vector2(130, -29.5)
 shape = SubResource("RectangleShape2D_2d586")
 
 [node name="ControlAI" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("11_5d4og")]

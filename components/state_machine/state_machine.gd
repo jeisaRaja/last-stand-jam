@@ -13,6 +13,8 @@ func _process(delta):
 	if current_state: current_state.update(delta)
 
 func _physics_process(delta):
+	#if owner.name == "Enemy":
+		#print(current_state)
 	if current_state: current_state.physics_update(delta)
 	
 func on_child_transition(state: State, new_state_name: String):

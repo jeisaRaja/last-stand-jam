@@ -6,12 +6,14 @@ class_name Enemy
 
 signal alert_enemy(player: Actor)
 
+var can_attack: bool = true
+
 func _ready():
 	super._ready()
 	attack_pattern = [
-		{"name": "attack", "probability": 0.5, "cooldown": 0, "damage": 10},
-		{"name": "attack_2", "probability": 0.4, "cooldown": 0, "damage": 20},
-		{"name": "attack_3", "probability": 0.1, "cooldown": 0, "damage": 40}
+		{"name": "attack", "probability": 0.5, "cooldown": 0.1, "damage": 10},
+		{"name": "attack_2", "probability": 0.4, "cooldown": 0.2, "damage": 20},
+		{"name": "attack_3", "probability": 0.1, "cooldown": 0.4, "damage": 40}
 	]
 
 func _physics_process(_delta):

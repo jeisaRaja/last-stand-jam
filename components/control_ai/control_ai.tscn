@@ -2,5 +2,10 @@
 
 [ext_resource type="Script" path="res://components/control_ai/control_ai.gd" id="1_5xluj"]
 
-[node name="MovementAI" type="Node"]
+[node name="ControlAI" type="Node"]
 script = ExtResource("1_5xluj")
+
+[node name="Wait" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Wait" to="." method="_on_wait_timeout"]

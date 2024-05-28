@@ -19,7 +19,6 @@ func _process(_delta):
 		is_alive = false
 	
 func take_damage(damage: int) -> void:
-	print(damage)
 	damage -= armor
 	if damage > 0:
 		current_health -= damage

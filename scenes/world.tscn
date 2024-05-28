@@ -2040,6 +2040,7 @@ position = Vector2(91, 641)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 position = Vector2(0, -20)
+zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 

@@ -64,7 +64,7 @@ func is_player_alive():
 func _on_enemy_alert_enemy(player_obj):
 	player = player_obj
 	chase_player = true
-	actor.SPEED += 150
+	actor.SPEED += 80
 
 func randomize_attack_range():
 	return base_attack_range + randi_range(-20,11)

@@ -1,9 +1,8 @@
 extends State
-class_name Jump
+class_name Fall
 
 func enter():
-	anim.play("jump")
-	actor.velocity.y = actor.JUMP_VELOCITY
+	anim.play("fall")
 
 func physics_update(delta):
 	actor_movement()
@@ -12,5 +11,3 @@ func physics_update(delta):
 		change_state.emit(self, "idle")
 	if actor.dash_input:
 		change_state.emit(self, "dash")
-	if actor.velocity.y > 0:
-		change_state.emit(self, "fall")

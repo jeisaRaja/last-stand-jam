@@ -20,4 +20,6 @@ func physics_update(delta):
 		change_state.emit(self, "dash")
 	if actor.block_input:
 		change_state.emit(self, "block")
+	if actor.velocity.y > 0:
+		change_state.emit(self, "fall")
 

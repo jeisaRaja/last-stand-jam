@@ -17,7 +17,6 @@ func enter():
 			combo_count = 0
 	elif actor.is_in_group("enemy"):
 		anim.play(actor.current_attack["name"])
-	sfx.play()
 
 func exit():
 	combo_timer.start()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c1e081jsnv0js"]
+[gd_scene load_steps=37 format=3 uid="uid://c1e081jsnv0js"]
 
 [ext_resource type="Script" path="res://actors/enemy/enemy.gd" id="1_m5ck5"]
 [ext_resource type="Texture2D" uid="uid://cyo21wi80ignc" path="res://graphics/enemy/Idle.png" id="1_slray"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://b8borpnglen2f" path="res://components/hurtbox/hurt_box_component.tscn" id="14_pw64c"]
 [ext_resource type="Texture2D" uid="uid://bdu5w00wv0kan" path="res://graphics/enemy/Attack3.png" id="15_sfsx6"]
 [ext_resource type="PackedScene" uid="uid://b3ofctom1qyfi" path="res://components/detect_ground/detect_ground_component.tscn" id="20_s7sk5"]
+[ext_resource type="AudioStream" uid="uid://ceugfblva6n0x" path="res://audio/sword-sound-2-36274.mp3" id="23_3jtqv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kw2st"]
 radius = 6.0
@@ -883,6 +884,11 @@ disabled = true
 position = Vector2(13, -15)
 target_position = Vector2(0, 20)
 actor = NodePath("../..")
+
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="attack" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("23_3jtqv")
 
 [connection signal="alert_enemy" from="." to="ControlAI" method="_on_enemy_alert_enemy"]
 [connection signal="body_entered" from="DetectionArea" to="ControlAI" method="_on_detection_area_body_entered"]

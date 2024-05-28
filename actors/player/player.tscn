@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cva1u0rtei2cf"]
+[gd_scene load_steps=35 format=3 uid="uid://cva1u0rtei2cf"]
 
 [ext_resource type="Script" path="res://actors/player/player.gd" id="1_2uo8i"]
 [ext_resource type="Texture2D" uid="uid://c7427qd811w2b" path="res://graphics/player/Idle.png" id="2_ibo8x"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://b8borpnglen2f" path="res://components/hurtbox/hurt_box_component.tscn" id="14_46h4m"]
 [ext_resource type="Texture2D" uid="uid://ct4d1cu5yjcs3" path="res://graphics/player/Take Hit - white silhouette.png" id="14_w7gby"]
 [ext_resource type="Texture2D" uid="uid://d0nevpu58xp4v" path="res://graphics/player/Attack2.png" id="16_7sbd0"]
+[ext_resource type="AudioStream" uid="uid://ceugfblva6n0x" path="res://audio/sword-sound-2-36274.mp3" id="22_xttkb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h30rk"]
 radius = 6.0
@@ -675,6 +676,11 @@ collision_mask = 16
 [node name="HurtboxCollision" type="CollisionShape2D" parent="HurtBoxComponent"]
 position = Vector2(0.5, -24)
 shape = SubResource("RectangleShape2D_jqyl5")
+
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="attack" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("22_xttkb")
 
 [connection signal="damage_signal" from="Health" to="StateMachine/State" method="_on_health_damage_signal"]
 [connection signal="dead_signal" from="Health" to="StateMachine/State" method="_on_health_dead_signal"]

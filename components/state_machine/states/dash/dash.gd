@@ -4,7 +4,7 @@ class_name Dash
 @onready var dash_duration = $dash_duration
 
 func enter():
-	anim.play("dash")
+	anim.play("run")
 	if actor.movement_input.x:
 		actor.velocity.x = actor.SPEED * actor.movement_input.x * 3
 	else:

@@ -1,8 +1,13 @@
 extends Node2D
 class_name ControlClass
 
-var enemy: Actor = null
+@export var enemy: Actor = null
 var player: Actor = null
+
+# Wander
+var wander_center: float
+var is_wandering: bool = false
+var wander_target: float
 
 func go_to_target(x_pos: float):
 	if x_pos > enemy.position.x:
@@ -10,6 +15,14 @@ func go_to_target(x_pos: float):
 	elif x_pos < enemy.position.x:
 		enemy.movement_input.x = -1
 
+func wander_around(radius: float) -> float:
+	var target_position = wander_center + (-1 * enemy.facing_dir * radius)
+	if target_position > enemy.global_position.x:
+		enemy.movement_input.x = 1
+	else:
+		enemy.movement_input.x = -1
+	return target_position
+	
 func dash_left():
 	enemy.movement_input.x = -1
 	enemy.dash_input = true

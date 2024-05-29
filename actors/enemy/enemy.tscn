@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://bla1hxpg27udp" path="res://graphics/enemy/Death.png" id="9_jpjkh"]
 [ext_resource type="Script" path="res://components/state_machine/states/take_damage/take_damage.gd" id="9_witd6"]
 [ext_resource type="PackedScene" uid="uid://c6vxxf15qqq1s" path="res://components/state_machine/states/fall/fall.tscn" id="10_taaqp"]
-[ext_resource type="PackedScene" uid="uid://f7eapagl4avm" path="res://components/control_ai/control_ai.tscn" id="11_5d4og"]
 [ext_resource type="PackedScene" uid="uid://bjnl0sxm3tc3q" path="res://components/hitbox/hitbox_component.tscn" id="11_m663x"]
 [ext_resource type="Script" path="res://components/health/health_component.gd" id="13_damnr"]
 [ext_resource type="Texture2D" uid="uid://butb8pd5vc2p6" path="res://graphics/enemy/Take hit.png" id="13_v7yoa"]
@@ -24,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://bdu5w00wv0kan" path="res://graphics/enemy/Attack3.png" id="15_sfsx6"]
 [ext_resource type="PackedScene" uid="uid://b3ofctom1qyfi" path="res://components/detect_ground/detect_ground_component.tscn" id="20_s7sk5"]
 [ext_resource type="AudioStream" uid="uid://ceugfblva6n0x" path="res://audio/sword-sound-2-36274.mp3" id="23_3jtqv"]
+[ext_resource type="Script" path="res://components/enemy_controller/novice_warrior.gd" id="24_meung"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kw2st"]
 radius = 6.0
@@ -882,10 +882,6 @@ collision_layer = 2
 position = Vector2(130, -29.5)
 shape = SubResource("RectangleShape2D_2d586")
 
-[node name="ControlAI" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("11_5d4og")]
-actor = NodePath("..")
-base_attack_range = 70
-
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("11_m663x")]
 collision_layer = 16
 collision_mask = 32
@@ -928,10 +924,10 @@ actor = NodePath("../..")
 [node name="attack" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("23_3jtqv")
 
-[connection signal="alert_enemy" from="." to="ControlAI" method="_on_enemy_alert_enemy"]
-[connection signal="body_entered" from="DetectionArea" to="ControlAI" method="_on_detection_area_body_entered"]
-[connection signal="body_exited" from="DetectionArea" to="ControlAI" method="_on_detection_area_body_exited"]
-[connection signal="body_entered" from="HitboxComponent" to="ControlAI" method="_on_hitbox_component_body_entered"]
+[node name="NoviceWarriorController" type="Node2D" parent="." node_paths=PackedStringArray("enemy")]
+script = ExtResource("24_meung")
+enemy = NodePath("..")
+
 [connection signal="damage_signal" from="Health" to="StateMachine/State" method="_on_health_damage_signal"]
 [connection signal="dead_signal" from="Health" to="StateMachine/State" method="_on_health_dead_signal"]
 [connection signal="area_entered" from="HurtBoxComponent" to="Health" method="_on_hurt_box_component_area_entered"]

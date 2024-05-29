@@ -5,6 +5,8 @@ class_name Attack
 @onready var sfx = $"../../SFX/attack"
 var combo_count = 0
 
+signal attack_finished
+
 func enter():
 	if actor.is_in_group("player"):
 		if combo_timer.is_stopped():
@@ -19,7 +21,9 @@ func enter():
 		anim.play(actor.current_attack["name"])
 
 func exit():
+	actor.attack_input = false
 	combo_timer.start()
+	attack_finished.emit()
 
 func physics_update(delta):
 	if not anim.is_playing():

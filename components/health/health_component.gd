@@ -28,15 +28,8 @@ func _process(_delta):
 func take_damage(damage: int) -> void:
 	if actor.immune:
 		return
-	damage -= armor
-	if actor.is_in_group("enemy"):
-		hit_amount += 1
-		if hit_amount > 2:
-			hit_amount = 0
-			actor.immune = true
-	if not actor.immune:
-		damage_signal.emit()
 	if damage > 0:
+		damage_signal.emit()
 		current_health -= damage
 		if current_health < 0:
 			current_health = 0

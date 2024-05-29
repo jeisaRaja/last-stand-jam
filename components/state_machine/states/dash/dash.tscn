@@ -8,3 +8,8 @@ script = ExtResource("1_w12dw")
 [node name="dash_duration" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="dash_cooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="dash_cooldown" to="." method="_on_dash_cooldown_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://c1e081jsnv0js"]
+[gd_scene load_steps=39 format=3 uid="uid://c1e081jsnv0js"]
 
 [ext_resource type="Script" path="res://actors/enemy/enemy.gd" id="1_m5ck5"]
 [ext_resource type="Texture2D" uid="uid://cyo21wi80ignc" path="res://graphics/enemy/Idle.png" id="1_slray"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://components/state_machine/states/take_damage/take_damage.gd" id="9_witd6"]
 [ext_resource type="PackedScene" uid="uid://c6vxxf15qqq1s" path="res://components/state_machine/states/fall/fall.tscn" id="10_taaqp"]
 [ext_resource type="PackedScene" uid="uid://bjnl0sxm3tc3q" path="res://components/hitbox/hitbox_component.tscn" id="11_m663x"]
+[ext_resource type="PackedScene" uid="uid://sd4wojg2fvxg" path="res://components/state_machine/states/dash/dash.tscn" id="11_yxdaf"]
 [ext_resource type="Script" path="res://components/health/health_component.gd" id="13_damnr"]
 [ext_resource type="Texture2D" uid="uid://butb8pd5vc2p6" path="res://graphics/enemy/Take hit.png" id="13_v7yoa"]
 [ext_resource type="Texture2D" uid="uid://dlgybuf2q54d4" path="res://graphics/enemy/Attack2.png" id="14_0h3cj"]
@@ -23,7 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://bdu5w00wv0kan" path="res://graphics/enemy/Attack3.png" id="15_sfsx6"]
 [ext_resource type="PackedScene" uid="uid://b3ofctom1qyfi" path="res://components/detect_ground/detect_ground_component.tscn" id="20_s7sk5"]
 [ext_resource type="AudioStream" uid="uid://ceugfblva6n0x" path="res://audio/sword-sound-2-36274.mp3" id="23_3jtqv"]
-[ext_resource type="Script" path="res://components/enemy_controller/novice_warrior.gd" id="24_meung"]
+[ext_resource type="Script" path="res://components/enemy_controller/novice_warrior.gd" id="25_ybao3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kw2st"]
 radius = 6.0
@@ -169,7 +170,7 @@ tracks/10/keys = {
 
 [sub_resource type="Animation" id="Animation_2v5vq"]
 resource_name = "enemy_attack"
-length = 0.42
+length = 0.5
 step = 0.06
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -282,7 +283,7 @@ tracks/8/keys = {
 
 [sub_resource type="Animation" id="Animation_ksjyf"]
 resource_name = "enemy_attack_2"
-length = 0.4
+length = 0.6
 step = 0.06
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -371,7 +372,6 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id="Animation_qlmhx"]
 resource_name = "attack_3"
-length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -867,6 +867,8 @@ script = ExtResource("8_4lo2i")
 
 [node name="Fall" parent="StateMachine" instance=ExtResource("10_taaqp")]
 
+[node name="Dash" parent="StateMachine" instance=ExtResource("11_yxdaf")]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_2p333")
@@ -925,9 +927,12 @@ actor = NodePath("../..")
 stream = ExtResource("23_3jtqv")
 
 [node name="NoviceWarriorController" type="Node2D" parent="." node_paths=PackedStringArray("enemy")]
-script = ExtResource("24_meung")
+script = ExtResource("25_ybao3")
 enemy = NodePath("..")
 
+[connection signal="attack_finished" from="StateMachine/Attack" to="NoviceWarriorController" method="_on_attack_attack_finished"]
+[connection signal="body_entered" from="DetectionArea" to="NoviceWarriorController" method="_on_detection_area_body_entered"]
 [connection signal="damage_signal" from="Health" to="StateMachine/State" method="_on_health_damage_signal"]
+[connection signal="damage_signal" from="Health" to="NoviceWarriorController" method="_on_health_damage_signal"]
 [connection signal="dead_signal" from="Health" to="StateMachine/State" method="_on_health_dead_signal"]
 [connection signal="area_entered" from="HurtBoxComponent" to="Health" method="_on_hurt_box_component_area_entered"]

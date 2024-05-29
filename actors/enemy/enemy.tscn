@@ -837,7 +837,6 @@ DAMAGE = 10
 MAX_HEALTH = 100
 
 [node name="EnemyCollision" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -22)
 shape = SubResource("CapsuleShape2D_kw2st")
 disabled = true
@@ -877,7 +876,6 @@ libraries = {
 actor = NodePath("..")
 
 [node name="DetectionArea" parent="." instance=ExtResource("7_1tut5")]
-visible = false
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
@@ -910,7 +908,6 @@ offset_bottom = -56.0
 text = "100"
 
 [node name="HurtBoxComponent" parent="." instance=ExtResource("14_pw64c")]
-visible = false
 collision_layer = 64
 collision_mask = 8
 

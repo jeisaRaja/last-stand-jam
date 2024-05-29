@@ -27,15 +27,8 @@ func _process(_delta):
 	
 func take_damage(damage: int) -> void:
 	if actor.immune:
-		print("attack blocked")
-		actor.immune = false
 		return
 	damage -= armor
-	if damage > 0:
-		current_health -= damage
-		if current_health < 0:
-			current_health = 0
-		update_health()
 	if actor.is_in_group("enemy"):
 		hit_amount += 1
 		if hit_amount > 2:
@@ -43,6 +36,11 @@ func take_damage(damage: int) -> void:
 			actor.immune = true
 	if not actor.immune:
 		damage_signal.emit()
+	if damage > 0:
+		current_health -= damage
+		if current_health < 0:
+			current_health = 0
+		update_health()
 
 func heal(amount: int) -> void:
 	current_health += amount

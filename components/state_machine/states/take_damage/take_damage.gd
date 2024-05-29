@@ -3,7 +3,7 @@ class_name TakeDamage
 
 func enter():
 	anim.play("take_damage")
-	actor.velocity.x = -actor.facing_dir * 100
+	#actor.velocity.x = -actor.facing_dir * 100
 	
 func exit():
 	actor.velocity.x = 0

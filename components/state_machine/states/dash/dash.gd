@@ -20,5 +20,6 @@ func physics_update(delta):
 		change_state.emit(self, "attack")
 
 func exit():
+	actor.dash_input = false
 	actor.velocity.x = 0
 	actor.immune = false

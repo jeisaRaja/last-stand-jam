@@ -1,0 +1,130 @@
+[gd_scene load_steps=12 format=3 uid="uid://byajq2ce8t3bn"]
+
+[ext_resource type="Script" path="res://actors/king/king.gd" id="1_t62c4"]
+[ext_resource type="Texture2D" uid="uid://deve1y2nort1u" path="res://graphics/king/IDLE.png" id="1_ynqkb"]
+[ext_resource type="PackedScene" uid="uid://btadir51euy2o" path="res://components/state_machine/state_machine.tscn" id="2_7hyg0"]
+[ext_resource type="PackedScene" uid="uid://71w6y4w8xypr" path="res://components/state_machine/states/idle/idle.tscn" id="3_q76up"]
+[ext_resource type="PackedScene" uid="uid://bbcrlkeukk64b" path="res://components/state_machine/states/run/run.tscn" id="4_rg280"]
+[ext_resource type="PackedScene" uid="uid://c6vxxf15qqq1s" path="res://components/state_machine/states/fall/fall.tscn" id="6_sj3ye"]
+[ext_resource type="PackedScene" uid="uid://c1b3l7qyt0e5s" path="res://components/gravity/gravity_component.tscn" id="6_tw6ht"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cbb7y"]
+size = Vector2(12, 26)
+
+[sub_resource type="Animation" id="Animation_7ob0e"]
+resource_name = "king_idle"
+length = 0.65
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_uc53j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_imsxu"]
+_data = {
+"RESET": SubResource("Animation_uc53j"),
+"king_idle": SubResource("Animation_7ob0e")
+}
+
+[node name="King" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_t62c4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -50)
+texture = ExtResource("1_ynqkb")
+hframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_cbb7y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_imsxu")
+}
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("2_7hyg0")]
+initial_state = NodePath("idle")
+
+[node name="idle" parent="StateMachine" instance=ExtResource("3_q76up")]
+
+[node name="Run" parent="StateMachine" instance=ExtResource("4_rg280")]
+
+[node name="Fall" parent="StateMachine" instance=ExtResource("6_sj3ye")]
+
+[node name="GravityComponent" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("6_tw6ht")]
+actor = NodePath("..")

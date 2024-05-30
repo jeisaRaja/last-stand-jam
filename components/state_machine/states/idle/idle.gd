@@ -6,7 +6,6 @@ func enter():
 	actor.velocity = Vector2.ZERO
 
 func physics_update(delta):
-	print(actor)
 	actor.gravity.apply_gravity(delta)
 	if actor.movement_input.x != 0:
 		change_state.emit(self, "run")	

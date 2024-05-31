@@ -1,0 +1,14 @@
+In a kingdom on the brink of collapse, the enemy advances, overwhelming the last strongholds of resistance.
+The king, the beacon of hope for his people, must escape to safety.
+But escape is not guaranteed.
+One warrior stands between the king and certain doom.
+join King 2
+King: My friend, the kingdom owes you a debt we can never repay.
+King: Your courage will not be forgotten.
+leave King
+join Player 2
+Player: My king, your safety ensures the future of our land. Go now, I will hold them off.
+leave Player
+join Guard 2
+Guard: May the gods watch over you. We must leave immediately.
+[signal arg="intro_finished"]

@@ -15,9 +15,9 @@ func enter():
 	is_available = false
 	anim.play("run")
 	if actor.movement_input.x:
-		actor.velocity.x = actor.SPEED * actor.movement_input.x * 5
+		actor.velocity.x = actor.SPEED * actor.movement_input.x * 3
 	else:
-		actor.velocity.x = actor.SPEED * actor.facing_dir * 5
+		actor.velocity.x = actor.SPEED * actor.facing_dir * 3
 	#actor.set_collision_mask_value(2, false)DD
 	actor.immune = true
 	dash_duration.start(0.2)

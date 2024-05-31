@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cva1u0rtei2cf"]
+[gd_scene load_steps=40 format=3 uid="uid://cva1u0rtei2cf"]
 
 [ext_resource type="Script" path="res://actors/player/player.gd" id="1_2uo8i"]
 [ext_resource type="Texture2D" uid="uid://c7427qd811w2b" path="res://graphics/player/Idle.png" id="2_ibo8x"]
@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://d0nevpu58xp4v" path="res://graphics/player/Attack2.png" id="16_7sbd0"]
 [ext_resource type="Texture2D" uid="uid://d2vflosvixkjp" path="res://graphics/player/Fall.png" id="20_h2isr"]
 [ext_resource type="AudioStream" uid="uid://ceugfblva6n0x" path="res://audio/sword-sound-2-36274.mp3" id="22_xttkb"]
+[ext_resource type="AudioStream" uid="uid://cxqyi3eohaw11" path="res://audio/running-in-grass-6237_trimmed.mp3" id="26_2hx74"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h30rk"]
 radius = 6.0
@@ -556,7 +557,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_fs4ll"]
 resource_name = "player_run"
-length = 0.8
+length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -601,7 +602,7 @@ tracks/3/path = NodePath("Sprite2D:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
@@ -705,7 +706,7 @@ size = Vector2(31, 32)
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 4
 script = ExtResource("1_2uo8i")
-BASE_SPEED = 200
+BASE_SPEED = 300
 JUMP_VELOCITY = -350.0
 DAMAGE = 10
 MAX_HEALTH = 1000
@@ -790,6 +791,9 @@ shape = SubResource("RectangleShape2D_jqyl5")
 
 [node name="attack" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("22_xttkb")
+
+[node name="run" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("26_2hx74")
 
 [connection signal="damage_signal" from="Health" to="StateMachine/State" method="_on_health_damage_signal"]
 [connection signal="dead_signal" from="Health" to="StateMachine/State" method="_on_health_dead_signal"]

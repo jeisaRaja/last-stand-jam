@@ -5,6 +5,8 @@ class_name Player
 
 signal dead_signal
 
+var can_move = true
+
 func _ready():
 	super._ready()
 	attack_pattern = [
@@ -18,9 +20,11 @@ func _process(_delta):
 
 func _physics_process(_delta):
 	player_input()
-	move_and_slide()
-
+	super._physics_process(_delta)
+	
 func player_input():
+	if not can_move:
+		return
 	movement_input = Vector2.ZERO
 	if Input.is_action_pressed("MoveRight"):
 		movement_input.x = 1
@@ -55,3 +59,21 @@ func player_input():
 		block_input = true
 	else:
 		block_input = false
+
+
+func _on_intro_restrict_control(value: bool):
+	can_move = not value
+	set_all_input_to_zero()
+
+func set_all_input_to_zero():
+	movement_input.x = 0
+	movement_input.y = 0
+	attack_input = false
+	block_input = false
+	dash_input = false
+	jump_input = false
+	jump_input_actuation = false
+
+func flip():
+	super.flip()
+	hitbox.scale.x *= -1

@@ -48,9 +48,8 @@ func _ready():
 	state_machine.initiate_states_machine()
 
 func _physics_process(delta):
-	pass
+	move_and_slide()
 
 func flip():
 	sprite.flip_h = not sprite.flip_h
-	hitbox.scale.x *= -1
 

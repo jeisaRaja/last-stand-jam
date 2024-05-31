@@ -1,10 +1,18 @@
 extends State
 class_name Run
 
+#@onready var sfx: AudioStreamPlayer2D = $"../../SFX/run"
+
 func enter():
 	anim.play("run")
 
+func exit():
+	#sfx.stop()
+	pass
+	
 func physics_update(delta):
+	#if not sfx.playing:
+		#sfx.play()
 	actor.gravity.apply_gravity(delta)
 	actor_movement()
 	actor.velocity.x = actor.SPEED * actor.movement_input.x

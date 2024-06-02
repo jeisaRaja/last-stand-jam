@@ -45,7 +45,7 @@ func player_input():
 	else:
 		jump_input_actuation = false
 	
-	if Input.is_action_just_pressed("Dash"):
+	if Input.is_action_just_pressed("Dash") and can_dash:
 		dash_input = true
 	else:
 		dash_input = false

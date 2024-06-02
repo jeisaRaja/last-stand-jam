@@ -709,7 +709,7 @@ script = ExtResource("1_2uo8i")
 BASE_SPEED = 300
 JUMP_VELOCITY = -350.0
 DAMAGE = 10
-MAX_HEALTH = 1000
+MAX_HEALTH = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -23)
@@ -791,6 +791,7 @@ shape = SubResource("RectangleShape2D_jqyl5")
 
 [node name="attack" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("22_xttkb")
+volume_db = -6.0
 
 [node name="run" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("26_2hx74")

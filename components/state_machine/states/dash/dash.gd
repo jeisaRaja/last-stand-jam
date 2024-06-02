@@ -6,13 +6,9 @@ class_name Dash
 
 var dash_effect: PackedScene = preload("res://effects/dash_effect.tscn")
 
-var is_available = true
-
 func enter():
-	if not is_available:
-		return
 	dash_cooldown.start(1)	
-	is_available = false
+	actor.can_dash = false
 	anim.play("run")
 	if actor.movement_input.x:
 		actor.velocity.x = actor.SPEED * actor.movement_input.x * 3
@@ -36,4 +32,4 @@ func exit():
 	actor.immune = false
 	
 func _on_dash_cooldown_timeout():
-	is_available = true
+	actor.can_dash = true

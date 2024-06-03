@@ -7,18 +7,22 @@ var attack_pattern = [
 		{"name": "attack_2", "damage": 20, "range": 70},
 		{"name": "attack_3", "damage": 30, "range": 85}
 ]
+
 var hit_count: int = 0
 var dash_count: int = 0
 var attack_count: int = 0
 var is_attacking: bool = false
+var signal_connected: bool = false
 
 func _ready():
 	wander_center = enemy.global_position.x
 	enemy.attack_pattern = attack_pattern
 	
 func _process(_delta):
-	pass
-
+	if player and not signal_connected:
+		player.connect("dead_signal", _on_player_dead)
+		signal_connected = true
+		
 func _physics_process(_delta):
 	var distance_to_target = abs(enemy.global_position.x - target_position)
 	if player == null:
@@ -58,3 +62,6 @@ func control_wander(distance_to_target):
 
 func _on_attack_attack_finished():
 	is_attacking = false
+
+func _on_player_dead():
+	player = null

@@ -2,7 +2,7 @@ extends Actor
 class_name Enemy
 
 @onready var detection_area = $DetectionArea
-@onready var raycats = $Raycasts
+@onready var raycasts = $Raycasts
 
 signal alert_enemy(player: Actor)
 
@@ -17,7 +17,7 @@ func _physics_process(_delta):
 func flip():
 	super.flip()
 	detection_area.scale.x *= -1
-	raycats.scale.x *= -1
+	raycasts.scale.x *= -1
 
 func alert(player: Actor):
 	alert_enemy.emit(player)

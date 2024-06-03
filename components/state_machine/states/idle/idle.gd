@@ -6,6 +6,8 @@ func enter():
 	actor.velocity = Vector2.ZERO
 
 func physics_update(delta):
+	if actor.is_in_group("enemy"):
+		print(actor, actor.attack_input)
 	actor.gravity.apply_gravity(delta)
 	if actor.movement_input.x != 0:
 		change_state.emit(self, "run")	

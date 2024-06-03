@@ -1043,7 +1043,7 @@ position = Vector2(200, 286)
 BASE_SPEED = 80
 
 [node name="Player" parent="." instance=ExtResource("4_vvsxt")]
-position = Vector2(273, 285)
+position = Vector2(1069, 272)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -80)

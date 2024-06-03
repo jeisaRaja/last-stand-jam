@@ -10,6 +10,7 @@ signal restrict_control(value:bool)
 @onready var spawn_timer = $SpawnTimer
 
 var enemy: PackedScene = preload("res://actors/enemy/enemy.tscn")
+var enemy_ranger: PackedScene = preload("res://actors/ranger/ranger.tscn")
 
 var intro_finished = false
 var total_enemy_spawned = 0
@@ -31,24 +32,31 @@ func _on_dialogic_signal(arg: String):
 		guard.movement_input.x = -1
 		intro_finished = true
 		set_spawn_enemy(3)
-
+		
 func set_spawn_enemy(amount: int):
 	remaining_enemies = amount
 	if remaining_enemies > 0:
 		spawn_enemy()
 		remaining_enemies -= 1
 		spawn_timer.start(1.5)
+	spawn_enemy_ranger()
 
 func spawn_enemy():
-	var enemy_spawn: Actor = enemy.instantiate()
+	var enemy_spawn: Enemy = enemy.instantiate()
 	add_child(enemy_spawn)
 	enemy_spawn.position = spawn_loc.position
+
+func spawn_enemy_ranger():
+	var enemy_ranger_spawn = enemy_ranger.instantiate()
+	add_child(enemy_ranger_spawn)
+	enemy_ranger_spawn.position = spawn_loc.position
+	enemy_ranger_spawn.player = player
 
 func _on_spawn_timer_timeout():
 	if remaining_enemies > 0:
 		spawn_enemy()
 		remaining_enemies -= 1
 		if remaining_enemies == 0:
-			spawn_timer.stop()  # Stop the timer if all enemies have been spawned
+			spawn_timer.stop()
 		else:
-			spawn_timer.start(2)  # Restart the timer for the next enemy spawn
+			spawn_timer.start(2)

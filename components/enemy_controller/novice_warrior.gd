@@ -57,7 +57,7 @@ func control_wander(distance_to_target):
 		is_wandering = true
 		wander_around(wander_radius)
 	else:
-		if distance_to_target < 1:
+		if distance_to_target < 5:
 			wander_around(wander_radius)
 
 func _on_attack_attack_finished():

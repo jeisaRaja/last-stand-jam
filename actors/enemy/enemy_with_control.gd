@@ -25,7 +25,6 @@ func go_to_target(x_pos: float):
 func wander_around(radius: float):
 	target_position = wander_center + (-1 * enemy.facing_dir * radius)
 	var distance_to_target = abs(enemy.global_position.x - target_position)
-	print(distance_to_target)
 	if distance_to_target < 2:
 		enemy.movement_input.x = 0
 		return

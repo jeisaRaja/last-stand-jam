@@ -103,7 +103,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_f1pvx"]
 resource_name = "attack"
-length = 2.0
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -126,7 +126,7 @@ _data = {
 "run": SubResource("Animation_h6gxk")
 }
 
-[node name="Ranger" type="CharacterBody2D" node_paths=PackedStringArray("enemy") groups=["enemy"]]
+[node name="Ranger" type="CharacterBody2D" node_paths=PackedStringArray("enemy") groups=["enemy", "ranger"]]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_3m2mh")
@@ -170,3 +170,5 @@ position = Vector2(42, -36)
 [node name="SFX" type="Node2D" parent="."]
 
 [node name="attack" type="AudioStreamPlayer2D" parent="SFX"]
+
+[connection signal="attack_finished" from="StateMachine/Attack" to="." method="_on_attack_attack_finished"]

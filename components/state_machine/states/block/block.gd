@@ -18,5 +18,4 @@ func physics_update(delta):
 		change_state.emit(self, "Jump")
 
 func _on_block_duration_timeout():
-	print("does timer end")
 	actor.immune = false

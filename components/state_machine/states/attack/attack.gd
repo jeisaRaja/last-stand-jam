@@ -19,6 +19,10 @@ func enter():
 			combo_count = 0
 	elif actor.is_in_group("enemy"):
 		anim.play(actor.current_attack["name"])
+		#if actor.is_in_group("ranger"):
+			#var arrow_instance = actor.arrow.instantiate()
+			#var root = get_tree().get_root()
+			#root.add_child(arrow_instance)
 	sfx.play()
 
 func exit():

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqnpsw50ts22e"]
+[gd_scene load_steps=6 format=3 uid="uid://dqnpsw50ts22e"]
 
 [ext_resource type="PackedScene" uid="uid://c1e081jsnv0js" path="res://actors/enemy/enemy.tscn" id="1_tobj6"]
 [ext_resource type="PackedScene" uid="uid://c5kmoklaf64ln" path="res://scenes/tile_map.tscn" id="2_v4tew"]
+[ext_resource type="PackedScene" uid="uid://cva1u0rtei2cf" path="res://actors/player/player.tscn" id="3_osa22"]
 [ext_resource type="PackedScene" uid="uid://d0nowc8p7asu4" path="res://scenes/parallax_background.tscn" id="4_0codu"]
 [ext_resource type="PackedScene" uid="uid://byajq2ce8t3bn" path="res://actors/king/king.tscn" id="5_hv3l6"]
 
@@ -18,3 +19,6 @@ position = Vector2(1643, 711)
 
 [node name="King" parent="." instance=ExtResource("5_hv3l6")]
 position = Vector2(1248, 707)
+
+[node name="Player" parent="." instance=ExtResource("3_osa22")]
+position = Vector2(1304, 708)

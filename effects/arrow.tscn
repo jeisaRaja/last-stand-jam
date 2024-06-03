@@ -10,7 +10,7 @@ size = Vector2(28, 1)
 collision_layer = 8
 collision_mask = 37
 script = ExtResource("1_wqiqu")
-arrow_speed = 150
+arrow_speed = 300
 max_distance = 2000
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -21,3 +21,5 @@ vframes = 9
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6, -0.5)
 shape = SubResource("RectangleShape2D_irtuu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

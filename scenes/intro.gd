@@ -32,7 +32,7 @@ func _on_dialogic_signal(arg: String):
 		guard.movement_input.x = -1
 		intro_finished = true
 		set_spawn_enemy(3)
-		
+
 func set_spawn_enemy(amount: int):
 	remaining_enemies = amount
 	if remaining_enemies > 0:

@@ -44,4 +44,8 @@ func update_health():
 	label.text = str(current_health)
 
 func _on_hurt_box_component_area_entered(area):
-	take_damage(area.owner.current_attack["damage"])
+	#print(area.get_parent())
+	if area.owner:
+		take_damage(area.owner.current_attack["damage"])
+	elif area.get_parent():
+		take_damage(area.get_parent().current_attack["damage"])

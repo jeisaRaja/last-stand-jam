@@ -26,13 +26,15 @@ func _physics_process(_delta):
 			timer.autostart = false
 			timer.wait_time = 0.8
 			timer.timeout.connect(_immune_timer_timeout)
-			add_child(timer)
 			timer.start()
 			attack_timer = timer
+		else:
+			go_to_target(player.global_position.x)
 
 func flip():
 	super.flip()
-	detection_area.scale.x *= -1
+	if detection_area:
+		detection_area.scale.x *= -1
 
 func alert(player: Actor):
 	alert_enemy.emit(player)

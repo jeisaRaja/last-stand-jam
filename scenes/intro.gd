@@ -1,7 +1,7 @@
 extends Node2D
 
 signal restrict_control(value:bool)
-
+ 
 @onready var king = $King
 @onready var guard = $KingGuard
 @onready var player = $Player

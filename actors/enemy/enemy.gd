@@ -16,8 +16,10 @@ func _physics_process(_delta):
 	
 func flip():
 	super.flip()
-	detection_area.scale.x *= -1
-	raycasts.scale.x *= -1
+	if detection_area:
+		detection_area.scale.x *= -1
+	if raycasts:
+		raycasts.scale.x *= -1
 
 func alert(player: Actor):
 	alert_enemy.emit(player)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://jcpdyxgfd8ba"]
+[gd_scene load_steps=17 format=3 uid="uid://jcpdyxgfd8ba"]
 
 [ext_resource type="Script" path="res://actors/ranger/ranger.gd" id="1_3m2mh"]
 [ext_resource type="Texture2D" uid="uid://b6q6ik4eoq1x5" path="res://graphics/ranger/Elementals_leaf_ranger_288x128_SpriteSheet.png" id="2_0kgpq"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://5rknng2p00c2" path="res://components/state_machine/states/attack/Attack.tscn" id="6_plwf6"]
 [ext_resource type="PackedScene" uid="uid://c6vxxf15qqq1s" path="res://components/state_machine/states/fall/fall.tscn" id="7_lfirh"]
 [ext_resource type="PackedScene" uid="uid://c1b3l7qyt0e5s" path="res://components/gravity/gravity_component.tscn" id="7_scqam"]
+[ext_resource type="Script" path="res://components/health/health_component.gd" id="9_vo64l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o1ebb"]
 size = Vector2(16, 43)
@@ -170,5 +171,9 @@ position = Vector2(42, -36)
 [node name="SFX" type="Node2D" parent="."]
 
 [node name="attack" type="AudioStreamPlayer2D" parent="SFX"]
+
+[node name="Health" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("9_vo64l")
+actor = NodePath("..")
 
 [connection signal="attack_finished" from="StateMachine/Attack" to="." method="_on_attack_attack_finished"]
